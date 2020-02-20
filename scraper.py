@@ -12,16 +12,15 @@ def check_price(URL, desired_price):
     page = requests.get(URL, headers=headers)
     soup = BeautifulSoup(page.content, 'html.parser')
 
-    title = soup.find(class_="productName").get_text()
+    product_name = soup.find(class_="productName").get_text()
     price = soup.select_one('div[class="ZZ8f"] strong').get_text(strip=True)
 
     if("–" in price):
         price_clean = price.replace("–", "00")
     else:
         price_clean = price
-
-    print(title)
-    print(price_clean)
+		
+	return price_clean, product_name
     
     #if price_striped < desired_price:
         #send_mail()
