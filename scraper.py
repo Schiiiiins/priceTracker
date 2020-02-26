@@ -6,6 +6,7 @@ headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:68.0) Gec
 
 db.create_table()
 
+
 def send_mail():
     pass
 

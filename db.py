@@ -20,7 +20,23 @@ def insert_data(product, price_clean, des_price):
 def view_data():
     conn = sqlite3.connect("prices.db")
     cur = conn.cursor()
-    cur.execute("SELECT * FROM store")
+    cur.execute("SELECT * FROM pricelist")
     rows = cur.fetchall()
     conn.close()
     return rows
+
+
+def delete_data(item):
+    conn = sqlite3.connect("prices.db")
+    cur = conn.cursor()
+    cur.execute("DELETE FROM pricelist WHERE item=?", (item,))
+    conn.commit()
+    conn.close()
+
+
+def update_desprice(des_price, item):
+    conn = sqlite3.connect("prices.db")
+    cur = conn.cursor()
+    cur.execute("UPDATE pricelist SET desired_price=? WHERE item=?", (des_price, item))
+    conn.commit()
+    conn.close()
